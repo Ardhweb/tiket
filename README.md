@@ -18,7 +18,7 @@ cd tiket
 
 ## 📦 Install Dependencies
 ``` bash
-pip install -r requirements.txt
+pip install -r requriements.txt
 
 ## Apply migrations
 python manage.py migrate
