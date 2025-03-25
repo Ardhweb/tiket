@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'task',
     'rest_framework',
+    'accounts',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = "accounts.User"
+# settings.py
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.ObBackend',  # Replace 'path.to' with the actual Python path to your backend file
+    'django.contrib.auth.backends.ModelBackend',  # Default Django backend (optional)
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}

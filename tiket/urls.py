@@ -15,8 +15,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Tiket API Documention",
+        default_version='v1',
+        description="API documentation for your Django REST Framework project.",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@yourapi.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),  # You can change the permissions as needed
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('rest_framework.urls')), # intending to use the browsable API 
+    path('api/', include('api.urls')), #root of restful api 
 ]
